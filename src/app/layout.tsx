@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import VineNav from "@/components/nav/VineNav";
@@ -26,7 +27,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="mx-auto flex w-full max-w-md flex-1 flex-col px-4 pt-6 pb-[calc(env(safe-area-inset-bottom)+7rem)] md:max-w-3xl md:px-8 md:pb-10 lg:max-w-5xl">
           {children}
         </main>
-        <VineNav />
+        {/* The nav reads the URL, so it streams in on dynamic routes (/kitchen/[slug] ...). */}
+        <Suspense fallback={null}>
+          <VineNav />
+        </Suspense>
       </body>
     </html>
   );
