@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 import PetEgg from "@/components/PetEgg";
-import { ScanIcon } from "@/components/icons";
+import HomeScreen from "@/components/home/HomeScreen";
 import {
   clean,
   validate,
@@ -107,26 +107,7 @@ export default function Onboarding() {
   }
 
   if (status === "ready" && user) {
-    return (
-      <section className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-        <div className="motion-safe:animate-rise">
-          <h1 className="text-3xl font-black">Hi, {user.nickname}</h1>
-          <p className="mt-2 inline-flex items-center gap-2 rounded-full bg-ink-soft px-4 py-1.5 text-sm font-bold text-on-ink">
-            Playing for <span className="text-gold">{user.group_name}</span>
-          </p>
-        </div>
-        <PetEgg size={150} />
-        <p className="max-w-xs text-pretty text-muted motion-safe:animate-rise [animation-delay:120ms]">
-          Your pet is still an egg. Scan meals with new proteins to help it hatch.
-        </p>
-        <Button href="/scan" size="lg" block icon={<ScanIcon />}>
-          Scan a meal
-        </Button>
-        <Button variant="ghost" onClick={switchUser} className="text-sm font-semibold">
-          Not {user.nickname}? Switch player
-        </Button>
-      </section>
-    );
+    return <HomeScreen user={user} onSwitchUser={switchUser} />;
   }
 
   return (
