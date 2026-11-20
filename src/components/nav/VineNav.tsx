@@ -6,7 +6,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ChefIcon, CloseIcon, DexIcon, HomeIcon, PodiumIcon, ScanIcon, StoreIcon, TrophyIcon, type IconComponent } from "@/components/icons";
+import { ChefIcon, CloseIcon, DexIcon, HomeIcon, LeafIcon, PodiumIcon, ScanIcon, StoreIcon, TrophyIcon, type IconComponent } from "@/components/icons";
 
 type Item = { href: string; label: string; hint: string; Icon: IconComponent };
 const BEDS: { name: string; items: Item[] }[] = [
@@ -143,7 +143,7 @@ function SeedNav({ current, path }: { current: Item | null; path: string }) {
             <path d="M12 22C12 12 6 6 2 6c0 6 4 12 10 16zM12 22c0-8 4-14 10-14 0 6-4 12-10 14z" />
           </svg>
           <span className="flex size-9 items-center justify-center rounded-full bg-white/15">
-            {open ? <CloseIcon size={22} /> : CurrentIcon ? <CurrentIcon size={22} /> : <HomeIcon size={22} />}
+            {open ? <CloseIcon size={22} /> : CurrentIcon ? <CurrentIcon size={22} /> : <LeafIcon size={22} />}
           </span>
           <span className="text-left leading-tight">
             <span className="block text-base font-black">{open ? "Close" : current?.label ?? "Menu"}</span>
