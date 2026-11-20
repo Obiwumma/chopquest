@@ -6,9 +6,11 @@ export type Food = {
   type: "Plant" | "Alternative" | "Staple" | "Animal";
   protein_g_per_100g: number;
   price_ngn_per_kg: number | null;
+  /** What protein_g_per_100g is measured on: "Dry", "Raw", "Cooked", "As eaten"... (optional for older callers). */
+  basis?: string | null;
 };
 
-/** What Gemini returns per item (validated). */
+/** What the AI scanner returns per item (validated). */
 export type VisionItem = {
   food: string;
   local_name: string;

@@ -64,7 +64,9 @@ export function findSwaps(
   if (beforeProtein <= 0) return [];
   const meatCost = sumCost(meat.map((x) => costOf(x.food!, x.part.grams)));
   const stayingProtein = staying.reduce((s, x) => s + (x.food ? proteinOf(x.food, x.part.grams) : 0), 0);
-  const stayingCost = sumCost(staying.map((x) => (x.food ? costOf(x.food, x.part.grams) : null)));
+  // Parts the AI couldn't match (e.g. "tomato stew") are identical before and after the swap, so they
+  // are left out of both totals: the cost change stays exact instead of becoming "unknown".
+  const stayingCost = sumCost(staying.filter((x) => x.food).map((x) => costOf(x.food!, x.part.grams)));
   const beforeCost = meatCost != null && stayingCost != null ? meatCost + stayingCost : null;
   const stayingFoods = staying.map((x) => x.food).filter((f): f is Food => Boolean(f));
 

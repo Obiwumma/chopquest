@@ -1,6 +1,7 @@
 import { createPlantDish, getMenuItem } from "@/lib/server/cafeterias";
 import { listFoods } from "@/lib/foods-db";
 import { findSwaps } from "@/lib/swap";
+import { validateCard } from "@/lib/ai/kitchen-card";
 import type { KitchenCard, SwapOption } from "@/lib/types";
 
 // POST /api/plant-dishes { menuItemId, option, card, priceNgn } -> { id }
@@ -34,8 +35,10 @@ export async function POST(req: Request) {
       menuName: card.menuName.trim().slice(0, 60),
       studentBlurb: String(card.studentBlurb ?? "").trim().slice(0, 200),
       steps: card.steps.map((s) => String(s).trim().slice(0, 200)).filter(Boolean).slice(0, 8),
-      validated: card.validated === true,
+      validated: false,
     };
+    // Never trust the browser's "validated" flag: check the card against the swap here.
+    cleanCard.validated = validateCard(cleanCard, { dishName: item.name, breakdown: item.breakdown, option, foods }).length === 0;
     const newId = await createPlantDish({
       cafeteriaId: item.cafeteriaId, menuItemId: id, name: cleanCard.menuName, priceNgn: Math.round(price), proteinG, option, card: cleanCard,
     });

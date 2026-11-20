@@ -149,10 +149,13 @@ describe("findSwaps", () => {
     expect(opts).toEqual([]);
   });
 
-  it("ignores parts the AI couldn't match (foodId null) instead of crashing", () => {
+  it("ignores parts the AI couldn't match (foodId null) and still prices the swap", () => {
     const foods = withPrices(TEST_PRICES);
     const dish = [...chickenJollof(foods), { foodId: null, label: "Mystery sauce", grams: 50, role: "soup" as const }];
-    expect(findSwaps(dish, "Chicken jollof rice", DEFAULT_LIMITS, foods).length).toBeGreaterThan(0);
+    const opts = findSwaps(dish, "Chicken jollof rice", DEFAULT_LIMITS, foods);
+    expect(opts.length).toBeGreaterThan(0);
+    expect(opts[0].before.costNgn).toBe(870); // the unmatched sauce is the same on both plates
+    expect(opts[0].after.costNgn).not.toBeNull();
   });
 });
 

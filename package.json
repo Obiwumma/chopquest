@@ -11,7 +11,10 @@
     "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.mts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seed:cafeterias": "node --env-file-if-exists=.env.local scripts/seed-cafeterias.mts"
+    "seed:cafeterias": "node --env-file-if-exists=.env.local scripts/seed-cafeterias.mts",
+    "ai:precompute": "tsx scripts/ai-precompute.mts",
+    "eval": "tsx scripts/eval-ai.mts",
+    "evidence": "tsx scripts/evidence.mts"
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
@@ -27,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.1.1"
   }

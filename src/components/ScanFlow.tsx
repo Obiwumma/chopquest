@@ -12,7 +12,7 @@ import { ArrowLeftIcon, CameraIcon, CheckIcon, CloseIcon, ImageIcon, ScanIcon } 
 
 type Row = {
   key: string;
-  raw_label: string | null; // what Gemini said (null for foods the user added)
+  raw_label: string | null; // what the AI said (null for foods the user added)
   portion: string;
   estimated_grams: number;
   confidence: number | null;

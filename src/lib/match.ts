@@ -1,6 +1,6 @@
 import type { Food } from "./foods";
 
-// Dish names Gemini uses -> the `food` row they should count as. Keys are normalised (see norm()).
+// Dish names the AI uses -> the `food` row they should count as. Keys are normalised (see norm()).
 // Hand-written because the vision model speaks in dishes and the DB speaks in ingredients.
 const ALIASES: Record<string, string> = {
   "jollof rice": "Rice, milled",

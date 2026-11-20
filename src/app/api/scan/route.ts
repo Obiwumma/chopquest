@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { query } from "@/lib/db";
-import { analyzeMeal, GeminiError, sanitizeVision } from "@/lib/gemini";
+import { analyzeMeal, sanitizeVision } from "@/lib/ai/vision";
+import { AiError, aiErrorMessage } from "@/lib/ai/client";
 import { listFoods } from "@/lib/foods-db";
 import { matchFood } from "@/lib/match";
 import type { ScanResponse, VisionResult } from "@/lib/foods";
@@ -10,7 +11,7 @@ export const maxDuration = 60;
 const MAX_BASE64 = 3_000_000; // ~2.2 MB JPEG; the client sends ~768px images (~100 KB)
 
 // POST /api/scan { image: base64 JPEG (no data: prefix) } -> ScanResponse
-// Sends the photo to Gemini and returns draft items for the confirm screen.
+// Sends the photo to the AI (OpenRouter) and returns draft items for the confirm screen.
 // Nothing is saved to scans here and the photo is never stored — only the parsed JSON is cached by hash.
 export async function POST(req: Request) {
   let image: unknown;
@@ -45,19 +46,17 @@ export async function POST(req: Request) {
     console.warn("scan_cache lookup failed (run npm run db:setup?)", (e as Error).message);
   }
 
-  // 2. Gemini.
+  // 2. AI (OpenRouter).
   if (!vision) {
     try {
       vision = await analyzeMeal(base64);
     } catch (e) {
-      if (e instanceof GeminiError) {
-        console.error("gemini:", e.kind, e.message);
-        if (e.kind === "rate_limit")
-          return Response.json({ error: "Our food scanner is busy. Try again in a minute.", code: "rate_limit" }, { status: 429 });
+      if (e instanceof AiError) {
+        console.error("scan ai:", e.kind, e.message);
         if (e.kind === "unreadable")
           return Response.json({ error: "Couldn't make out the food. Try a clearer, brighter photo from above." }, { status: 422 });
-        if (e.kind === "config")
-          return Response.json({ error: "The scanner isn't set up yet. Ask the team to check the Gemini key." }, { status: 500 });
+        const { message, status } = aiErrorMessage(e);
+        return Response.json({ error: message, code: e.kind }, { status });
       }
       console.error("scan failed", e);
       return Response.json({ error: "The scanner had a problem. Try again." }, { status: 502 });
