@@ -9,7 +9,7 @@ import type { DraftItem, Food, ScanResponse } from "@/lib/foods";
 import { Button } from "@/components/ui";
 import ScanReticle from "@/components/ScanReticle";
 import LiveCamera, { liveCameraSupported } from "@/components/LiveCamera";
-import { ArrowLeftIcon, CameraIcon, CheckIcon, CloseIcon, ScanIcon } from "@/components/icons";
+import { ArrowLeftIcon, CameraIcon, CheckIcon, CloseIcon, ImageIcon, ScanIcon } from "@/components/icons";
 
 type Row = {
   key: string;
@@ -61,6 +61,7 @@ export default function ScanFlow() {
   const [foods, setFoods] = useState<Food[]>([]);
   const [error, setError] = useState<string | null>(null);
   const cameraRef = useRef<HTMLInputElement>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
   // Live in-app camera first; the phone's own camera app only if the live one can't open.
   const [nativeOnly, setNativeOnly] = useState(false);
 
@@ -224,6 +225,7 @@ export default function ScanFlow() {
       </header>
 
       <input ref={cameraRef} type="file" accept="image/*" capture="environment" hidden onChange={onFile} data-testid="camera-input" />
+      <input ref={galleryRef} type="file" accept="image/*" hidden onChange={onFile} data-testid="gallery-input" />
 
       {error && (
         <p role="alert" className="rounded-xl bg-danger-bg px-4 py-3 font-semibold text-danger motion-safe:animate-rise">
@@ -239,7 +241,10 @@ export default function ScanFlow() {
           <Button size="lg" onClick={openCamera} className="mt-2" icon={<CameraIcon />}>
             {nativeOnly ? "Use phone camera" : "Open camera"}
           </Button>
-          <p className="text-xs text-muted">Live camera only, so every scan is a real meal. Your photo is only used to spot the food. We don&apos;t keep it.</p>
+          <Button variant="secondary" size="lg" onClick={() => galleryRef.current?.click()} icon={<ImageIcon />}>
+            Upload from gallery
+          </Button>
+          <p className="text-xs text-muted">Snap it live or upload a photo of your meal. Your photo is only used to spot the food. We don&apos;t keep it.</p>
         </div>
       )}
 
