@@ -94,7 +94,7 @@ function MeTab({ state, name, onRename, onTalk }: { state: CompanionState; name:
       <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 text-center">
         <Pet stage="egg" mood="content" size={180} />
         <p className="text-2xl font-black text-green-950">Sign up to hatch your companion</p>
-        <p className="text-stone-600">It grows with every plant protein you eat, and helps you find plant dishes on campus.</p>
+        <p className="text-stone-600">It grows with every alt protein you eat, and helps you find plant dishes on campus.</p>
         <Link href="/home" className="flex min-h-12 items-center rounded-full bg-leaf px-6 font-black text-white">Sign up</Link>
       </div>
     );
@@ -149,7 +149,7 @@ function MeTab({ state, name, onRename, onTalk }: { state: CompanionState; name:
 
       <section className="rounded-3xl bg-white p-4 shadow-sm">
         <h3 className="font-black text-green-950">Hungry for</h3>
-        <p className="text-sm text-stone-600">Plant proteins {name} hasn&apos;t had this week</p>
+        <p className="text-sm text-stone-600">Alt proteins {name} hasn&apos;t had this week</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {c.missingThisWeek.slice(0, 5).map((g) => (
             <span key={g} className="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-900">{g}</span>

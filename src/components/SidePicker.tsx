@@ -64,7 +64,7 @@ const SIDES: {
     href: "/kitchen",
     name: "Kitchen",
     who: "For restaurant managers",
-    pitch: "Swap meat for plant protein and see what it does to your profit.",
+    pitch: "Swap meat for alt proteins and see what it does to your profit.",
     points: ["Your best alternative proteins", "Profit per plate and per week", "Where to buy, on campus and in Bwari", "Publish plant dishes for students"],
     cta: "Open my kitchen",
     Icon: ChefIcon,

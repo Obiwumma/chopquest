@@ -75,7 +75,7 @@ export default function DemoScreen() {
 
       {!dish ? (
         <>
-          <ScreenTitle title={fixtures.cafeteria} sub="Pick a dish to find a plant-based swap." />
+          <ScreenTitle title={fixtures.cafeteria} sub="Pick a dish to find an alt protein swap." />
           <ul className="grid gap-2 md:grid-cols-3">
             {fixtures.dishes.map((d, i) => (
               <li key={d.id} className="cf-rise" style={{ animationDelay: `${i * 80}ms` }}>

@@ -126,7 +126,7 @@ export default function Landing() {
 
         <section className="cream" data-reveal="zoom">
           <h2>
-            Big flavours. Local plant protein. No boring plates.<span className="sticker">Made in Abuja</span>
+            Big flavours. Local alt proteins. No boring plates.<span className="sticker">Made in Abuja</span>
           </h2>
           <p>
             We help campus cafeterias swap the meat in their best sellers for moi moi, akara, awara, soy chunks and beans. Same dish, same price or less, and students
@@ -153,7 +153,7 @@ export default function Landing() {
           </div>
           <div className="good" data-reveal="right" style={delay(0.12)}>
             <h3 className="big">The good stuff</h3>
-            <p>Nigerian plant proteins we already love, ready to replace the meat.</p>
+            <p>Nigerian alt proteins we already love, ready to replace the meat.</p>
             <div className="facts">
               <span>Soy chunks <b>50 g</b></span>
               <span>Kuli-kuli <b>30 g</b></span>
@@ -198,7 +198,7 @@ export default function Landing() {
               <li>Find the best plant dishes on campus</li>
               <li>Read honest reviews before you try</li>
               <li>Ask for a plant version of your favourite</li>
-              <li>Grow your bean with every plant protein</li>
+              <li>Grow your bean with every alt protein</li>
             </ul>
             <Link className="btn" href="/home" style={{ background: "var(--g)", color: "var(--cream)", justifySelf: "start" }}>
               I&apos;m a student

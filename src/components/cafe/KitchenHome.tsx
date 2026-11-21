@@ -22,7 +22,7 @@ export default function KitchenHome() {
       <style>{RISE_CSS}</style>
       <ScreenTitle
         title="Kitchen"
-        sub="For cafeteria managers: find plant-based swaps for your best sellers, at the same cost or less."
+        sub="For cafeteria managers: find alt protein swaps for your best sellers, at the same cost or less."
         aside={
           <span className="hidden size-14 shrink-0 items-center justify-center rounded-[1.6rem_0.5rem] bg-leaf text-white sm:flex">
             <ChefIcon size={28} />
