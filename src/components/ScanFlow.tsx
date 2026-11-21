@@ -32,7 +32,7 @@ type Stage =
 
 const TYPE_LABEL: Record<Food["type"], string> = {
   Animal: "Animal protein",
-  Plant: "Plant protein",
+  Plant: "Alt protein (plant)",
   Alternative: "Alternative protein",
   Staple: "Staples",
 };

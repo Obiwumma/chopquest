@@ -16,7 +16,7 @@ export default function BoardScreen() {
   return (
     <div className="@container flex flex-col gap-6">
       <style>{RISE_CSS}</style>
-      <ScreenTitle title="Campus Plant Board" sub="Plant-based dishes on campus, rated by students." />
+      <ScreenTitle title="Campus Plant Board" sub="Alt protein dishes on campus, rated by students." />
       <CampusPulse />
 
       {state.status === "loading" && <SkeletonRows n={5} label="Loading the board" />}
@@ -74,7 +74,7 @@ function BoardBody({ board }: { board: Board }) {
             </li>
           ))}
         </ol>
-        <p className="px-1 text-xs text-stone-500">Ranked by student ratings of plant-based dishes. Cafeterias with few reviews start near 3 stars until more students rate them.</p>
+        <p className="px-1 text-xs text-stone-500">Ranked by student ratings of alt protein dishes. Cafeterias with few reviews start near 3 stars until more students rate them.</p>
       </section>
 
       <section aria-label="Top rated dishes this week" className="flex min-w-0 flex-col gap-3">

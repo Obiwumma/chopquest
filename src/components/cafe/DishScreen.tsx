@@ -48,7 +48,7 @@ export default function DishScreen({ id }: { id: number }) {
             <ArrowLeftIcon size={20} /> {cafe.name}
           </Link>
         )}
-        <span className="w-fit rounded-full bg-green-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-green-900">Plant-based</span>
+        <span className="w-fit rounded-full bg-green-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-green-900">Alt protein</span>
         <h1 className="text-3xl font-black leading-tight text-green-950 md:text-4xl">{dish.name}</h1>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-stone-600">
           <b className="text-2xl font-black text-green-900">{naira(dish.priceNgn)}</b>

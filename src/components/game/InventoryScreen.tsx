@@ -213,7 +213,7 @@ function DietTab({ diet }: { diet: Diet }) {
   if (!stats.meals) return <EmptyScan text="Scan a few meals and we'll chart your diet and read it back to you." />;
   const tiles = [
     { label: "protein per meal", value: `${stats.avgProteinPerMeal} g` },
-    { label: "from plants", value: stats.plantSharePct == null ? "n/a" : `${stats.plantSharePct}%` },
+    { label: "from alt proteins", value: stats.plantSharePct == null ? "n/a" : `${stats.plantSharePct}%` },
     { label: "groups this week", value: String(stats.groupsThisWeek) },
     { label: "day streak", value: String(stats.streakDays) },
   ];

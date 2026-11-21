@@ -56,7 +56,7 @@ export default function WhyUpgrade({ o, priceNgn, dishName, itemId }: { o: SwapO
           ) : gain != null ? (
             <>This swap costs a little more per plate, so it pays through new customers, not savings.</>
           ) : (
-            <>Students want plant options. Add your prices and we can show you the money too.</>
+            <>Students want alt protein options. Add your prices and we can show you the money too.</>
           )}
         </h3>
       </header>

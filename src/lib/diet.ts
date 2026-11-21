@@ -117,10 +117,10 @@ export function analyse(s: DietStats, inventory: InventorySlot[], untried: strin
 
   if (s.plantSharePct != null) {
     if (s.plantSharePct >= 60)
-      out.push({ tone: "good", title: "Mostly plant protein", body: `About ${s.plantSharePct}% of your protein comes from plants and soy. Keep it up.` });
+      out.push({ tone: "good", title: "Mostly alt protein", body: `About ${s.plantSharePct}% of your protein comes from alt proteins. Keep it up.` });
     else if (s.plantSharePct <= 30)
-      out.push({ tone: "tip", title: "Mostly animal protein", body: `Only about ${s.plantSharePct}% of your protein is from plants. Swap one meal this week for moi moi, beans or awara.` });
-    else out.push({ tone: "info", title: "A mix of plant and animal", body: `About ${s.plantSharePct}% of your protein is from plants and soy.` });
+      out.push({ tone: "tip", title: "Mostly animal protein", body: `Only about ${s.plantSharePct}% of your protein is from alt proteins. Swap one meal this week for moi moi, beans or awara.` });
+    else out.push({ tone: "info", title: "A mix of plant and animal", body: `About ${s.plantSharePct}% of your protein is from alt proteins.` });
   }
 
   if (s.groupsThisWeek >= 4) out.push({ tone: "good", title: "Great variety", body: `${s.groupsThisWeek} different protein groups in the last 7 days.` });

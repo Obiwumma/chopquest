@@ -15,7 +15,7 @@ export default function CafeteriasScreen() {
   return (
     <div className="flex flex-col gap-6">
       <style>{RISE_CSS}</style>
-      <ScreenTitle title="Cafeterias" sub="Where to eat on campus, and how their plant-based dishes are rated." />
+      <ScreenTitle title="Cafeterias" sub="Where to eat on campus, and how their alt protein dishes are rated." />
       {state.status === "loading" && <SkeletonRows n={5} label="Loading cafeterias" />}
       {state.status === "error" && <ErrorBox message={state.message} onRetry={retry} />}
       {state.status === "ready" && (() => {

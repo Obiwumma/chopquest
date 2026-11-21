@@ -49,7 +49,7 @@ Take out: ${removed}.
 Put in, per plate: ${added}.
 Stays the same: ${staying || "the rest of the dish"}.
 
-Write a kitchen card for this plant-based version.
+Write a kitchen card for this alt protein (plant-based) version. In student-facing text say "alt protein", not "plant-based".
 Use ONLY the foods above plus pantry items (${PANTRY}). Do not add any other food, meat, fish, egg or crayfish.
 Mention the removed meat only as what is being replaced.
 - "menuName": at most 4 words, something students would order.

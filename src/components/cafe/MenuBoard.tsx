@@ -55,7 +55,7 @@ export default function MenuBoard({ slug }: { slug: string }) {
         <>
           <ScreenTitle
             title={state.data.cafeteria.name}
-            sub="Your menu, best sellers first. Pick a dish to find a plant-based swap."
+            sub="Your menu, best sellers first. Pick a dish to find an alt protein swap."
             aside={
               <Link href="/kitchen" className="flex min-h-12 shrink-0 items-center rounded-full bg-white px-4 text-sm font-bold text-green-800 shadow-sm hover:bg-green-50">
                 Switch
