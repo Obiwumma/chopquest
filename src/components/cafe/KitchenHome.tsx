@@ -4,13 +4,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Cafeteria } from "@/lib/types";
-import { loadKitchen, saveKitchen, useApi } from "@/lib/cafe-client";
+import { loadKitchen, saveKitchen, useApi, useDemoCodes } from "@/lib/cafe-client";
 import { ArrowRightIcon, ChefIcon, StoreIcon } from "@/components/icons";
 import { EmptyBox, ErrorBox, RISE_CSS, ScreenTitle, SkeletonRows } from "./bits";
 
 export default function KitchenHome() {
   const { state, retry } = useApi<{ cafeterias: Cafeteria[] }>("/api/cafeterias");
   const [saved, setSaved] = useState<string | null>(null);
+  const codes = useDemoCodes();
   useEffect(() => {
     // localStorage only exists in the browser; read it after hydration.
     const id = requestAnimationFrame(() => setSaved(loadKitchen()));
@@ -30,6 +31,12 @@ export default function KitchenHome() {
         }
       />
 
+      {Object.keys(codes).length > 0 && (
+        <p className="cf-rise rounded-2xl bg-palm/25 p-4 text-stone-800">
+          <b className="text-green-950">Demo open to everyone.</b> Every kitchen&apos;s code is shown below, so you can sign in to any cafeteria, break down its dishes, find
+          swaps and publish one.
+        </p>
+      )}
       {state.status === "loading" && <SkeletonRows n={5} h="h-16" label="Loading cafeterias" />}
       {state.status === "error" && <ErrorBox message={state.message} onRetry={retry} />}
       {state.status === "ready" &&
@@ -75,6 +82,11 @@ export default function KitchenHome() {
                     <span className="flex-1">
                       <span className="block font-extrabold text-green-950">{c.name}</span>
                       {c.location && <span className="block text-sm text-stone-600">{c.location}</span>}
+                      {codes[c.slug] && (
+                        <span className="mt-0.5 block text-sm text-stone-700">
+                          Code <b className="font-black tracking-widest text-green-900">{codes[c.slug]}</b>
+                        </span>
+                      )}
                     </span>
                     <ArrowRightIcon size={18} className="text-green-700/50" />
                   </Link>
