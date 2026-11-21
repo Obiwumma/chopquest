@@ -5,7 +5,7 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import type { Cafeteria } from "@/lib/types";
-import { saveKitchen } from "@/lib/cafe-client";
+import { saveKitchen, useDemoCodes } from "@/lib/cafe-client";
 import { ChefIcon } from "@/components/icons";
 import { SkeletonRows } from "./bits";
 
@@ -16,6 +16,7 @@ export default function KitchenGate({ slug, children }: { slug: string; children
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const demo = useDemoCodes()[slug];
 
   useEffect(() => {
     let live = true;
@@ -93,6 +94,17 @@ export default function KitchenGate({ slug, children }: { slug: string; children
         <h1 className="text-2xl font-black text-green-950">Kitchen sign-in</h1>
         <p className="mt-1 text-stone-700">Enter your cafeteria&apos;s 6-digit kitchen code. You only need to do this once on this phone.</p>
       </div>
+      {demo && (
+        <div className="flex items-center justify-between gap-3 rounded-2xl bg-palm/25 p-3">
+          <span className="text-sm text-stone-800">
+            <b className="block text-green-950">Demo access</b>
+            Code for this kitchen: <b className="font-black tracking-widest">{demo}</b>
+          </span>
+          <button type="button" onClick={() => setCode(demo)} className="min-h-12 shrink-0 rounded-full bg-leaf px-4 font-black text-white">
+            Fill it in
+          </button>
+        </div>
+      )}
       <label className="flex flex-col gap-1 font-bold text-green-950">
         Kitchen code
         <input

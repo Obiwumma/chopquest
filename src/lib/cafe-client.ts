@@ -124,3 +124,19 @@ export function saveAsked(ids: number[]) {
     localStorage.setItem(ASKED_KEY, JSON.stringify(ids));
   } catch {}
 }
+
+/** Kitchen codes shown publicly for the demo (only while the server's demo switch is on). */
+export function useDemoCodes(): Record<string, string> {
+  const [codes, setCodes] = useState<Record<string, string>>({});
+  useEffect(() => {
+    let live = true;
+    fetch("/api/kitchen/demo-codes")
+      .then((r) => (r.ok ? r.json() : { codes: {} }))
+      .then((d) => live && setCodes(d.codes ?? {}))
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
+  return codes;
+}
